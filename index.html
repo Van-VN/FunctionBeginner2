@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h2>Bài 1: Viết hàm tính bình phương của một số bất kỳ được đưa vào. Gọi hàm vừa xây dựng được.</h2>
+<input type="number" id="numVal" oninput="sqrNum()">
+<br>
+<p style="display: inline-block; padding-right: 25px;">Kết quả: </p>
+<p style="display: inline-block" id="result"></p>
+
+<h2>Bài 2: Viết hàm tính diện tích, hàm tính chu vi hình tròn. Gọi hàm vừa xây dựng được</h2>
+<input type="number" id="cirRad" oninput="cirCalc()">
+<br>
+<p style="display: inline-block; padding-right: 25px;">Kết quả: </p>
+<p style="display: inline-block" id="cirResult"></p>
+
+<h2>Bài 3: Viết hàm tính giai thừa của một số nguyên bất kỳ được đưa vào. Gọi hàm vừa xây dựng được</h2>
+<input type="number" id="factoNum" min="0" step="1" oninput="factoriaCalc()">
+<br>
+<p style="display: inline-block; padding-right: 25px;">Kết quả: </p>
+<p style="display: inline-block" id="factoriaResult"></p>
+
+<h2>Bài 4: Viết hàm kiểm tra xem ký tự nhập vào có phải là ký tự số không.</h2>
+<button onclick="strNumCheck()">Click to start</button>
+
+<h2>Bài 5: Viết hàm nhận vào 3 số nguyên bất kỳ, trả về số nguyên có giá trị nhỏ nhất</h2>
+<input type="number" oninput="compareNum()" id="num1" placeholder="Nhập số thứ nhất">
+<input type="number" oninput="compareNum()" id="num2" placeholder="Nhập số thứ hai">
+<input type="number" oninput="compareNum()" id="num3" placeholder="Nhập số thứ ba">
+<br>
+<p style="display: inline-block; padding-right: 25px;">Số nhỏ nhất trong 3 số bên trên là: </p>
+<p style="display: inline-block" id="displayMinNum"></p>
+
+<h2>Bài 6: Viết hàm nhận vào một số, kiểm tra xem nếu số đưa vào có phải là nguyên dương không</h2>
+<input type="number" id="inputNum" oninput="positiveNumCheck()">
+<br>
+<p style="display: inline-block; padding-right: 25px;">Kết quả: </p>
+<p style="display: inline-block" id="positiveNumCheck"></p>
+
+<h2>Bài 7: Viết hàm truyền vào 2 số nguyên bất kì, thực hiện đổi chỗ hai số nguyên đó.</h2>
+<button onclick="swapPositition()">Click to start</button>
+
+<h2>Bài 8: Viết hàm truyền vào mảng số nguyên bất kỳ, sau đó đảo ngược mảng số nguyên đó</h2>
+<input style="width: 300px;" type="text" id="inputArray"
+       placeholder="Nhập các phần tử vào Array, cách nhau bằng dấu ','">
+<button onclick="reverseArray()">Bấm để đảo ngược</button>
+<br>
+<p style="display: inline-block; padding-right: 25px;">Array được đảo ngược: </p>
+<p style="display: inline-block" id="reverseArray"></p>
+
+<h2>Bài 9: Viết hàm truyền vào một mảng ký tự, và một ký tự bất kỳ, kiểm tra xem ký tự bất kỳ đó có nằm trong mảng
+    không</h2>
+<input style="width: 300px;" type="text" id="inputArray1"
+       placeholder="Nhập các phần tử vào Array, cách nhau bằng dấu ','">
+<br>
+<input type="text" id="inArrayCheck" placeholder="Nhập kí tự muốn tìm kiếm trong Array">
+<button onclick="findEleminArray()">Bấm để kiểm tra</button>
+<br>
+<p style="display: inline-block; padding-right: 25px;">Kết quả: </p>
+<p style="display: inline-block" id="findArrayResult"></p>
+
+</body>
+</html>
+
+<script>
+
+    // Bài 1
+    function sqrNum() {
+        let getNum = +document.getElementById('numVal').value;
+        // let result = getNum ** 2;
+        document.getElementById('result').innerHTML = `${getNum ** 2}`;
+    }
+
+    // Bài 2
+    function cirCalc() {
+        let rad = +document.getElementById('cirRad').value;
+        document.getElementById('cirResult').innerHTML = `Chu vi hình tròn là ${rad ** 2 * Math.PI} ; Diện tích hình tròn là ${rad * 2 * Math.PI}`;
+    }
+
+    // Bài 3
+
+    function factoriaCalc() {
+        let result = 1;
+        let factoNum = +document.getElementById('factoNum').value;
+        for (let i = 1; i <= factoNum; i++) {
+            result *= i;
+        }
+        document.getElementById('factoriaResult').innerHTML = `${result}`;
+    }
+
+    // Bài 4
+
+    function strNumCheck() {
+        let ans = prompt('Nhập gì đó...');
+        if (isNaN(ans)) {
+            alert(`Chuỗi vừa nhập '${ans}' không phải là số.`)
+        } else {
+            alert(`Chuỗi vừa nhập '${ans}' là số.`)
+        }
+    }
+
+    // Bài 5
+
+    function compareNum() {
+        let compareResult;
+        let numa = +document.getElementById('num1').value;
+        let numb = +document.getElementById('num2').value;
+        let numc = +document.getElementById('num3').value;
+        if (numa < numb && numa < numc) {
+            compareResult = numa;
+        } else if (numb < numa && numb < numc) {
+            compareResult = numb;
+        } else if (numc < numa && numc < numb) {
+            compareResult = numc;
+        } else {
+            compareResult = `Có hai giá trị nhỏ bằng nhau!`
+        }
+        console.log(numa, numb, numc, compareResult);
+        document.getElementById('displayMinNum').innerHTML = `${compareResult}`;
+    }
+
+    // Bài 6
+
+    function positiveNumCheck() {
+        let num = +document.getElementById('inputNum').value;
+        if (num > 0) {
+            document.getElementById('positiveNumCheck').innerHTML = `True`
+        } else if (num === 0) {
+            document.getElementById('positiveNumCheck').innerHTML = `0`
+        } else {
+            document.getElementById('positiveNumCheck').innerHTML = `False`
+        }
+    }
+
+
+    // Bài 7
+
+    function swapPositition() {
+        let numa = +prompt('Nhập số thứ nhất.')
+        let numb = +prompt('Nhập số thứ hai.')
+        let temp;
+        if (isNaN(numa) || isNaN(numb)) {
+            alert('Nhập lại số');
+        } else {
+            temp = numa;
+            numa = numb;
+            numb = temp;
+            alert(`Giá trị hai số được đảo ngược là ${numa} và ${numb}`);
+        }
+    }
+
+    // Bài 7 Cách 2 (Sử dụng function với 2 đối số)
+    // function swapPositition(a,b) {
+    //     let temp;
+    //     temp = a;
+    //     a = b;
+    //     b = temp;
+    //     return(a,b);
+    // }
+    //
+    // swapPositition(1,2)
+
+    // Bài 8
+    function reverseArray() {
+        let result = '[';
+        let arr = document.getElementById('inputArray').value.split(',');
+        console.log(arr);
+        for (let i = arr.length - 1; i >= 0; i--) {
+            result += arr[i] + ', ';
+            console.log(arr[i]);
+        }
+        document.getElementById('reverseArray').innerHTML = result + ']';
+    }
+
+    // Bài 9
+    function findEleminArray() {
+        let position = null;
+        let arr = document.getElementById('inputArray1').value.split(',');
+        let itemToFind = document.getElementById('inArrayCheck').value;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === itemToFind) {
+                position = i;
+            }
+        }
+        if (position === null) {
+            document.getElementById('findArrayResult').innerHTML = `Kí tự '${itemToFind}' không có trong Array ${arr}`;
+        } else {
+            document.getElementById('findArrayResult').innerHTML = `Kí tự '${itemToFind}' có trong Array ở vị trí ${position}`;
+        }
+    }
+
+</script>
+
+
+<!--Bài 1: Viết hàm tính bình phương của một số bất kỳ được đưa vào. Gọi hàm vừa xây dựng được.-->
+
+<!--Bài 2: Viết hàm tính diện tích, hàm tính chu vi hình tròn. Gọi hàm vừa xây dựng được-->
+
+<!--Bài 3: Viết hàm tính giai thừa của một số nguyên bất kỳ được đưa vào. Gọi hàm vừa xây dựng được.-->
+
+<!--Bài 4: Viết hàm kiểm tra xem ký tự nhập vào có phải là ký tự số không.-->
+<!--Nếu là ký tự số hàm trả về true, ngược lại trả về false.-->
+
+<!--Bài 5: Viết hàm nhận vào 3 số nguyên bất kỳ, trả về số nguyên có giá trị nhỏ nhất.-->
+
+<!--Bài 6: Viết hàm nhận vào một số, kiểm tra xem nếu số đưa vào có phải là nguyên dương không.-->
+<!--Nếu là nguyên dương trả về true, ngược lại trả về false.-->
+
+<!--Bài 7: Viết hàm truyền vào 2 số nguyên bất kì, thực hiện đổi chỗ hai số nguyên đó.-->
+
+<!--Bài 8: Viết hàm truyền vào mảng số nguyên bất kỳ, sau đó đảo ngược mảng số nguyên đó.-->
+
+<!--Bài 9: Viết hàm truyền vào một mảng ký tự, và một ký tự bất kỳ, kiểm tra xem ký tự bất kỳ đó có nằm trong mảng không.-->
+<!--Nếu có trả về số lần xuất hiện của ký tự đó, nếu không trả về -1.-->
